@@ -4,64 +4,118 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
-    private CheckBox cbRemember;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Firebase
+        mAuth = FirebaseAuth.getInstance();
+
+        // Views
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        cbRemember = findViewById(R.id.cbRemember);
 
         Button btnLogin = findViewById(R.id.btnLogin);
         TextView tvRegister = findViewById(R.id.tvRegister);
-        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        ImageButton btnBack = findViewById(R.id.btnBack);
 
+        // Login
         btnLogin.setOnClickListener(v -> attemptLogin());
 
-        tvRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
+        // Register
+        tvRegister.setOnClickListener(v -> goToRegister());
 
-        tvForgotPassword.setOnClickListener(v -> new AlertDialog.Builder(LoginActivity.this)
-                .setTitle("Forgot Password")
-                .setMessage("Password recovery will be implemented in a future task.")
-                .setPositiveButton("OK", null)
-                .show());
+        // Back
+        btnBack.setOnClickListener(v -> finish());
     }
 
     private void attemptLogin() {
+
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
+        // Email validation
         if (TextUtils.isEmpty(email)) {
             etEmail.setError("Email is required");
             etEmail.requestFocus();
             return;
         }
 
+        // Password validation
         if (TextUtils.isEmpty(password)) {
             etPassword.setError("Password is required");
             etPassword.requestFocus();
             return;
         }
 
-        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+        Button btnLogin = findViewById(R.id.btnLogin);
 
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        // Disable button
+        btnLogin.setEnabled(false);
+
+        // Firebase Login
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+
+                    btnLogin.setEnabled(true);
+
+                    if (task.isSuccessful()) {
+
+                        Toast.makeText(
+                                LoginActivity.this,
+                                "Login successful!",
+                                Toast.LENGTH_SHORT
+                        ).show();
+
+                        Intent intent = new Intent(
+                                LoginActivity.this,
+                                HomeActivity.class
+                        );
+
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+
+                        String errorMessage = "Login failed";
+
+                        if (task.getException() != null) {
+                            errorMessage =
+                                    task.getException().getMessage();
+                        }
+
+                        Toast.makeText(
+                                LoginActivity.this,
+                                errorMessage,
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                });
+    }
+
+    private void goToRegister() {
+
+        Intent intent = new Intent(
+                LoginActivity.this,
+                RegisterActivity.class
+        );
+
         startActivity(intent);
         finish();
     }

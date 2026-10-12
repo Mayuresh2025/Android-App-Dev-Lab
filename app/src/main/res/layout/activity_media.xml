@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F7FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Back Button & Header -->
+        <ImageButton
+            android:id="@+id/btnMediaBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="Go back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Audio &amp; Video Media"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#173B57"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stream and control audio &amp; video multimedia content."
+            android:textSize="14sp"
+            android:textColor="#657786"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Audio Player Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="3dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Audio Player"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#173B57" />
+
+            <TextView
+                android:id="@+id/tvAudioStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Audio Status: Idle"
+                android:textSize="14sp"
+                android:textColor="#263746"
+                android:padding="10dp"
+                android:background="#EEF2F5"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btnPlayAudio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Play"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#218C74"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnPauseAudio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pause"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#2879A8"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnStopAudio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Stop"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#D63031"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Video Player Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Video Player"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#173B57" />
+
+            <TextView
+                android:id="@+id/tvVideoStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Video Status: Ready to play"
+                android:textSize="14sp"
+                android:textColor="#263746"
+                android:padding="10dp"
+                android:background="#EEF2F5"
+                android:layout_marginTop="10dp" />
+
+            <VideoView
+                android:id="@+id/vvVideo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btnPlayVideo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Play Video"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#173B57"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnPauseVideo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pause Video"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#2879A8"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

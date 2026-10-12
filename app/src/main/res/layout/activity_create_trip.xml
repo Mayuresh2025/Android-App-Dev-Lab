@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@color/white"
     android:fillViewport="true">
 
     <LinearLayout
@@ -47,6 +47,7 @@
             android:hint="@string/hint_destination"
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/text_secondary"
             android:textSize="14sp" />
 
@@ -68,6 +69,7 @@
                 android:hint="@string/hint_start_date"
                 android:paddingStart="14dp"
                 android:paddingEnd="10dp"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="13sp" />
 
@@ -87,6 +89,7 @@
                 android:hint="@string/hint_end_date"
                 android:paddingStart="14dp"
                 android:paddingEnd="10dp"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -103,6 +106,7 @@
             android:inputType="number"
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/text_secondary"
             android:textSize="14sp" />
 

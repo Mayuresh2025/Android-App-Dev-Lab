@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F7FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <ImageButton
+            android:id="@+id/btnNetworkBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="Go back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Network Connectivity"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:textColor="#173B57"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check internet connectivity and test REST API communication."
+            android:textSize="15sp"
+            android:textColor="#657786"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="#FFFFFF"
+            android:elevation="3dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connection Status"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#173B57" />
+
+            <TextView
+                android:id="@+id/tvNetworkStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Checking connection..."
+                android:textSize="15sp"
+                android:textColor="#263746"
+                android:padding="12dp"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnCheckConnection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check Internet Connection"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#173B57"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="#FFFFFF"
+            android:elevation="3dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REST API / HTTP Data Transfer"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#173B57" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test HTTP GET (Download Data) and HTTP POST (Upload Data) with a REST API server."
+                android:textSize="14sp"
+                android:textColor="#657786"
+                android:layout_marginTop="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btnTestApi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Download (GET)"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#218C74"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnUploadApi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Upload (POST)"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#173B57"
+                    android:layout_marginStart="6dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvApiResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="API response will appear here."
+                android:textSize="14sp"
+                android:textColor="#263746"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:background="#EEF2F5"
+                android:textIsSelectable="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

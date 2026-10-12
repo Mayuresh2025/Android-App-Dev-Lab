@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@color/white"
     android:fillViewport="true">
 
     <LinearLayout
@@ -12,32 +12,49 @@
         android:orientation="vertical">
 
         <!-- Top brand area -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:background="@drawable/bg_gradient_splash"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="20dp">
+            android:background="@drawable/bg_gradient_splash">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/circle_navy"
-                android:padding="16dp"
-                android:src="@drawable/ic_airplane"
-                android:contentDescription="@string/app_name" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/circle_count_bg"
+                android:contentDescription="Back"
+                android:padding="10dp"
+                android:src="@drawable/ic_back" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:letterSpacing="0.12"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circle_navy"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_airplane"
+                    android:contentDescription="@string/app_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:letterSpacing="0.12"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <!-- Form card -->
         <androidx.cardview.widget.CardView
@@ -85,6 +102,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp"
+                    android:textColor="@color/text_primary"
                     android:textColorHint="@color/text_secondary"
                     android:textSize="14sp" />
 
@@ -100,6 +118,7 @@
                     android:inputType="textPassword"
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp"
+                    android:textColor="@color/text_primary"
                     android:textColorHint="@color/text_secondary"
                     android:textSize="14sp" />
 

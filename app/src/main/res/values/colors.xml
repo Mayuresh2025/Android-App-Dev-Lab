@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Brand Primary Navy & Dark Blues -->
     <color name="navy_dark">#0D1B2A</color>
-    <color name="navy">#16233A</color>
-    <color name="navy_light">#1B2A47</color>
+    <color name="navy_header">#11253C</color>
+    <color name="navy">#183B56</color>
+    <color name="navy_light">#264E70</color>
+
+    <!-- Teal Accents & Buttons -->
+    <color name="teal">#009688</color>
+    <color name="teal_primary">#00A896</color>
+    <color name="teal_button">#00897B</color>
+    <color name="teal_pill_bg">#E6F6F4</color>
+    <color name="teal_pill_text">#00897B</color>
+    <color name="teal_light">#B2DFDB</color>
+    <color name="teal_dark">#00695C</color>
+
+    <!-- Warm Orange & Coral -->
+    <color name="orange">#F26440</color>
+    <color name="orange_dark">#D84315</color>
+    <color name="orange_light">#FFCCBC</color>
+    <color name="orange_soft">#FFF3E0</color>
+    <color name="orange_logout">#FF6442</color>
+
+    <!-- Neutrals & Backgrounds -->
     <color name="white">#FFFFFF</color>
-    <color name="off_white">#F4F6F9</color>
-    <color name="teal">#14B8A6</color>
-    <color name="teal_light">#5EEAD4</color>
-    <color name="orange">#FF6B35</color>
-    <color name="orange_dark">#E5562A</color>
-    <color name="text_primary">#1B2A47</color>
-    <color name="text_secondary">#7A8699</color>
-    <color name="text_light">#C9D2E0</color>
-    <color name="error_red">#E63946</color>
+    <color name="off_white">#F7F9FB</color>
+    <color name="screen_bg">#F5F8FA</color>
     <color name="card_bg">#FFFFFF</color>
-    <color name="divider">#E3E7EE</color>
+    <color name="divider">#ECEFF1</color>
+    <color name="border_gray">#E2E8F0</color>
+    <color name="chip_unselected_bg">#EDF2F7</color>
+    <color name="search_bg">#FFFFFF</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#1A2530</color>
+    <color name="text_secondary">#7A889B</color>
+    <color name="text_muted">#A0AEC0</color>
+    <color name="text_light">#CFD8DC</color>
+
+    <!-- Status & Badges -->
+    <color name="badge_upcoming_bg">#E8F5E9</color>
+    <color name="badge_upcoming_text">#2E7D32</color>
+    <color name="badge_past_bg">#ECEFF1</color>
+    <color name="badge_past_text">#546E7A</color>
+    <color name="error_red">#E53935</color>
 </resources>

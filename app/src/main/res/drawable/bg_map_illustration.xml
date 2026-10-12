@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E8F4F8" />
+        </shape>
+    </item>
+    <!-- River representation -->
+    <item
+        android:left="0dp"
+        android:right="260dp"
+        android:top="0dp"
+        android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="#80D8FF"
+                android:endColor="#40C4FF" />
+        </shape>
+    </item>
+</layer-list>

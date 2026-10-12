@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <!-- Sun rays and body in yellow/orange -->
+  <path
+      android:fillColor="#FFA726"
+      android:pathData="M20,10a10,10 0 1,0 0,20 10,10 0 1,0 0,-20z"/>
+  <!-- Cloud in white/light gray -->
+  <path
+      android:fillColor="#ECEFF1"
+      android:pathData="M37,36H19c-4.4,0 -8,-3.6 -8,-8 0,-4 3,-7.3 7,-7.9 1.5,-4.7 5.9,-8.1 11,-8.1 6.1,0 11.1,4.7 11.8,10.7C43.5,23.4 45,26 45,29c0,3.9 -3.1,7 -7,7z"/>
+</vector>

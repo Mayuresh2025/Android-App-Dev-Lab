@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "549331032952",
+    "project_id": "voyageur-fdf9e",
+    "storage_bucket": "voyageur-fdf9e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549331032952:android:07e932cc944e797e52468d",
+        "android_client_info": {
+          "package_name": "com.voyageur.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIOneIJjUAUErBMcximYO_iT1iCxWA9mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

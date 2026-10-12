@@ -1,0 +1,49 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#F5F7FA">
+
+    <ImageButton
+        android:id="@+id/btnPhotoBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_media_previous"
+        android:contentDescription="Go back"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Travel Memories"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#173B57"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/tvPhotoStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loading your photos..."
+        android:textSize="15sp"
+        android:textColor="#657786"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" />
+
+    <GridView
+        android:id="@+id/gridPhotos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="2"
+        android:verticalSpacing="6dp"
+        android:horizontalSpacing="6dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:clipToPadding="false" />
+
+</LinearLayout>

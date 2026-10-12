@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="400dp"
+    android:viewportWidth="360"
+    android:viewportHeight="400">
+  <!-- Background Land -->
+  <path
+      android:fillColor="#EAF5F0"
+      android:pathData="M0,0h360v400H0z"/>
+  <!-- River / Water body on left -->
+  <path
+      android:fillColor="#81D4FA"
+      android:pathData="M0,0h80c5,50 -20,100 -5,160 15,60 5,120 -15,180 -10,30 -20,40 -60,60H0z"/>
+  <!-- Green Park Areas -->
+  <path
+      android:fillColor="#C8E6C9"
+      android:pathData="M160,20h120v60H160z M220,140h100v80H220z M90,300h90v70H90z"/>
+  <!-- Major Yellow Roads -->
+  <path
+      android:strokeColor="#FFE082"
+      android:strokeWidth="14"
+      android:pathData="M70,80h290 M140,0v400 M75,260h285 M260,0v400 M80,180L360,320"/>
+  <!-- Secondary White Roads -->
+  <path
+      android:strokeColor="#FFFFFF"
+      android:strokeWidth="6"
+      android:pathData="M70,80h290 M140,0v400 M75,260h285 M260,0v400 M80,180L360,320 M180,80v180 M140,140h120 M200,260v140"/>
+</vector>
