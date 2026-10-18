@@ -82,12 +82,23 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnPickImage"
+                    android:id="@+id/btnCaptureCamera"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#008080"
+                    android:text="📷 Camera"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/btnPickImage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#2879A8"
-                    android:text="Select Image"
+                    android:text="🖼️ Gallery"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 
@@ -95,10 +106,10 @@
                     android:id="@+id/btnRunMlClassification"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1.2"
                     android:backgroundTint="#173B57"
-                    android:text="Run ML Scan"
+                    android:text="⚡ Run Scan"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 

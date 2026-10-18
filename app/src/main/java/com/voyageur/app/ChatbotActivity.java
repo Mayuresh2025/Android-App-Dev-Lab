@@ -79,6 +79,14 @@ public class ChatbotActivity extends AppCompatActivity {
         chipTokyoBudget.setOnClickListener(v -> sendQuickQuery("What is the estimated budget for Tokyo?"));
         chipBeachPacking.setOnClickListener(v -> sendQuickQuery("What should I pack for a beach vacation?"));
         chipSafetyTips.setOnClickListener(v -> sendQuickQuery("Give me travel safety tips"));
+
+        // Check if an initial query was passed via Intent
+        if (getIntent() != null && getIntent().hasExtra("initial_query")) {
+            String initQuery = getIntent().getStringExtra("initial_query");
+            if (!TextUtils.isEmpty(initQuery)) {
+                sendQuickQuery(initQuery);
+            }
+        }
     }
 
     private void sendQuickQuery(String query) {
@@ -103,7 +111,7 @@ public class ChatbotActivity extends AppCompatActivity {
         tvTypingStatus.setVisibility(View.VISIBLE);
 
         // Generate AI Response
-        chatbotEngine.generateResponse(text, (response, category) -> {
+        chatbotEngine.generateResponse(this, text, (response, category) -> {
             tvTypingStatus.setVisibility(View.GONE);
             addAiMessage(response, category);
         });

@@ -45,6 +45,7 @@ public class MLImageClassifierActivity extends AppCompatActivity {
 
     private Bitmap selectedBitmap;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
+    private ActivityResultLauncher<Intent> cameraLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class MLImageClassifierActivity extends AppCompatActivity {
 
         ImageView btnBack = findViewById(R.id.btnBack);
         ivSelectedPhoto = findViewById(R.id.ivSelectedPhoto);
+        Button btnCaptureCamera = findViewById(R.id.btnCaptureCamera);
         Button btnPickImage = findViewById(R.id.btnPickImage);
         Button btnRunMlClassification = findViewById(R.id.btnRunMlClassification);
         tvMlResults = findViewById(R.id.tvMlResults);
@@ -70,6 +72,21 @@ public class MLImageClassifierActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
+        // Setup camera capture launcher
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null && result.getData().getExtras() != null) {
+                        Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+                        if (photo != null) {
+                            selectedBitmap = photo;
+                            ivSelectedPhoto.setImageBitmap(selectedBitmap);
+                            tvMlResults.setText("Photo captured from Camera! Tap '⚡ Run Scan' to classify landmark.");
+                        }
+                    }
+                }
+        );
+
         // Setup image picker
         imagePickerLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -83,13 +100,22 @@ public class MLImageClassifierActivity extends AppCompatActivity {
                                 selectedBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                             }
                             ivSelectedPhoto.setImageBitmap(selectedBitmap);
-                            tvMlResults.setText("Image selected successfully! Tap 'Run ML Scan' to analyze with Google ML Kit.");
+                            tvMlResults.setText("Image selected from gallery! Tap '⚡ Run Scan' to analyze with Google ML Kit.");
                         } catch (Exception e) {
                             Toast.makeText(this, "Failed to load image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
         );
+
+        btnCaptureCamera.setOnClickListener(v -> {
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+                cameraLauncher.launch(cameraIntent);
+            } else {
+                Toast.makeText(this, "Camera not available on this device", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btnPickImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -175,11 +201,24 @@ public class MLImageClassifierActivity extends AppCompatActivity {
             TextView tvRecMatchScore = card.findViewById(R.id.tvRecMatchScore);
             TextView tvRecSub = card.findViewById(R.id.tvRecSub);
             TextView tvRecHighlight = card.findViewById(R.id.tvRecHighlight);
+            TextView tvRecReasoning = card.findViewById(R.id.tvRecReasoning);
+            Button btnRecPlanTrip = card.findViewById(R.id.btnRecPlanTrip);
 
             tvRecTitle.setText(rec.getDestination() + ", " + rec.getCountry());
             tvRecMatchScore.setText(rec.getMatchScore() + "% Match");
             tvRecSub.setText("Category: " + rec.getCategory() + " • Est. Cost: " + rec.getEstimatedCost());
             tvRecHighlight.setText("💡 " + rec.getHighlight());
+            if (tvRecReasoning != null) {
+                tvRecReasoning.setText("🎯 ML Match Reasoning: " + rec.getReasoning());
+            }
+
+            if (btnRecPlanTrip != null) {
+                btnRecPlanTrip.setOnClickListener(v -> {
+                    Intent intent = new Intent(this, CreateTripActivity.class);
+                    intent.putExtra("destination", rec.getDestination());
+                    startActivity(intent);
+                });
+            }
 
             llRecommendationsContainer.addView(card);
         }

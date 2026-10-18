@@ -82,43 +82,64 @@ public class AISmartAlertsActivity extends AppCompatActivity {
     }
 
     private void loadAlerts() {
-        List<AISmartAlert> alertList = AISmartAlertEngine.generateActiveAlerts();
         llAlertsContainer.removeAllViews();
+        tvAlertCountSummary.setText("Scanning database trips & analyzing risks...");
 
-        tvAlertCountSummary.setText(alertList.size() + " Active AI Smart Alerts");
+        AISmartAlertEngine.generateActiveAlertsAsync(this, alertList -> {
+            if (isFinishing() || isDestroyed()) return;
 
-        for (AISmartAlert alert : alertList) {
-            View card = getLayoutInflater().inflate(R.layout.item_ai_alert, llAlertsContainer, false);
+            llAlertsContainer.removeAllViews();
+            tvAlertCountSummary.setText(alertList.size() + " Active AI Smart Alerts");
 
-            TextView tvAlertTitle = card.findViewById(R.id.tvAlertTitle);
-            TextView tvAlertPriority = card.findViewById(R.id.tvAlertPriority);
-            TextView tvAlertMessage = card.findViewById(R.id.tvAlertMessage);
-            Button btnSendNotification = card.findViewById(R.id.btnSendNotification);
-            Button btnAlertAction = card.findViewById(R.id.btnAlertAction);
+            for (AISmartAlert alert : alertList) {
+                View card = getLayoutInflater().inflate(R.layout.item_ai_alert, llAlertsContainer, false);
 
-            tvAlertTitle.setText(alert.getTitle());
-            tvAlertMessage.setText(alert.getMessage());
-            tvAlertPriority.setText(alert.getPriority());
+                TextView tvAlertTitle = card.findViewById(R.id.tvAlertTitle);
+                TextView tvAlertPriority = card.findViewById(R.id.tvAlertPriority);
+                TextView tvAlertMessage = card.findViewById(R.id.tvAlertMessage);
+                Button btnSendNotification = card.findViewById(R.id.btnSendNotification);
+                Button btnAlertAction = card.findViewById(R.id.btnAlertAction);
 
-            if ("HIGH".equalsIgnoreCase(alert.getPriority())) {
-                tvAlertPriority.setBackgroundColor(0xFFFFEBEE);
-                tvAlertPriority.setTextColor(0xFFC62828);
-            } else if ("MEDIUM".equalsIgnoreCase(alert.getPriority())) {
-                tvAlertPriority.setBackgroundColor(0xFFFFF3E0);
-                tvAlertPriority.setTextColor(0xFFE65100);
-            } else {
-                tvAlertPriority.setBackgroundColor(0xFFE8F5E9);
-                tvAlertPriority.setTextColor(0xFF2E7D32);
+                tvAlertTitle.setText(alert.getTitle());
+                tvAlertMessage.setText(alert.getMessage());
+                tvAlertPriority.setText(alert.getPriority());
+
+                if ("HIGH".equalsIgnoreCase(alert.getPriority())) {
+                    tvAlertPriority.setBackgroundColor(0xFFFFEBEE);
+                    tvAlertPriority.setTextColor(0xFFC62828);
+                } else if ("MEDIUM".equalsIgnoreCase(alert.getPriority())) {
+                    tvAlertPriority.setBackgroundColor(0xFFFFF3E0);
+                    tvAlertPriority.setTextColor(0xFFE65100);
+                } else {
+                    tvAlertPriority.setBackgroundColor(0xFFE8F5E9);
+                    tvAlertPriority.setTextColor(0xFF2E7D32);
+                }
+
+                btnAlertAction.setText(alert.getActionText());
+                btnAlertAction.setOnClickListener(v -> handleAlertAction(alert));
+
+                btnSendNotification.setOnClickListener(v ->
+                        sendSystemNotification(alert.getTitle(), alert.getMessage()));
+
+                llAlertsContainer.addView(card);
             }
+        });
+    }
 
-            btnAlertAction.setText(alert.getActionText());
-            btnAlertAction.setOnClickListener(v ->
-                    Toast.makeText(this, "Action executed: " + alert.getActionText(), Toast.LENGTH_SHORT).show());
-
-            btnSendNotification.setOnClickListener(v ->
-                    sendSystemNotification(alert.getTitle(), alert.getMessage()));
-
-            llAlertsContainer.addView(card);
+    private void handleAlertAction(AISmartAlert alert) {
+        String action = alert.getActionText();
+        if ("Plan a Trip".equalsIgnoreCase(action) || "Adjust Budget".equalsIgnoreCase(action)) {
+            startActivity(new android.content.Intent(this, CreateTripActivity.class));
+        } else if ("View Live Weather".equalsIgnoreCase(action) || "View Weather".equalsIgnoreCase(action)) {
+            startActivity(new android.content.Intent(this, WeatherActivity.class));
+        } else if ("Review Itinerary".equalsIgnoreCase(action)) {
+            startActivity(new android.content.Intent(this, MyTripsActivity.class));
+        } else if ("Packing Checklist".equalsIgnoreCase(action)) {
+            android.content.Intent chatIntent = new android.content.Intent(this, ChatbotActivity.class);
+            chatIntent.putExtra("initial_query", "What should I pack for my upcoming trip?");
+            startActivity(chatIntent);
+        } else {
+            Toast.makeText(this, "Alert action: " + action, Toast.LENGTH_SHORT).show();
         }
     }
 

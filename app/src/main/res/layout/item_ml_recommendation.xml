@@ -66,6 +66,36 @@
             android:textSize="13sp"
             android:textStyle="italic" />
 
+        <TextView
+            android:id="@+id/tvRecReasoning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="🎯 Feature Alignment"
+            android:textColor="#475569"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnRecPlanTrip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:backgroundTint="#008080"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Plan Trip"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
