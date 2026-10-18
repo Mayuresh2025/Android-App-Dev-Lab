@@ -179,11 +179,21 @@
             android:textColor="#1E293B"
             android:textSize="14sp" />
 
+        <ImageButton
+            android:id="@+id/btnVoiceMic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/circle_white_card"
+            android:backgroundTint="#008080"
+            android:contentDescription="Voice Input"
+            android:src="@android:drawable/ic_btn_speak_now" />
+
         <Button
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="6dp"
             android:backgroundTint="#173B57"
             android:text="Send"
             android:textAllCaps="false"

@@ -43,6 +43,11 @@ public class MLImageClassifierActivity extends AppCompatActivity {
     private EditText etPredictStyle;
     private TextView tvPredictionResult;
 
+    private EditText etFareCity;
+    private EditText etDaysUntil;
+    private Button btnPredictFareTrend;
+    private TextView tvFareTrendResult;
+
     private Bitmap selectedBitmap;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private ActivityResultLauncher<Intent> cameraLauncher;
@@ -69,6 +74,11 @@ public class MLImageClassifierActivity extends AppCompatActivity {
         etPredictStyle = findViewById(R.id.etPredictStyle);
         Button btnPredictCost = findViewById(R.id.btnPredictCost);
         tvPredictionResult = findViewById(R.id.tvPredictionResult);
+
+        etFareCity = findViewById(R.id.etFareCity);
+        etDaysUntil = findViewById(R.id.etDaysUntil);
+        btnPredictFareTrend = findViewById(R.id.btnPredictFareTrend);
+        tvFareTrendResult = findViewById(R.id.tvFareTrendResult);
 
         btnBack.setOnClickListener(v -> finish());
 
@@ -128,6 +138,8 @@ public class MLImageClassifierActivity extends AppCompatActivity {
         btnGetRecommendations.setOnClickListener(v -> generateRecommendations());
 
         btnPredictCost.setOnClickListener(v -> runCostPrediction());
+
+        btnPredictFareTrend.setOnClickListener(v -> runFareTrendPrediction());
     }
 
     private void runMlClassification() {
@@ -247,5 +259,47 @@ public class MLImageClassifierActivity extends AppCompatActivity {
 
         MLBudgetPredictor.PredictionResult result = MLBudgetPredictor.predictBudget(dest, days, style);
         tvPredictionResult.setText(result.getSummary());
+    }
+
+    private void runFareTrendPrediction() {
+        String city = etFareCity.getText().toString().trim();
+        String daysUntilStr = etDaysUntil.getText().toString().trim();
+
+        if (TextUtils.isEmpty(city)) {
+            etFareCity.setError("City required");
+            return;
+        }
+
+        int daysUntil = 20;
+        if (!TextUtils.isEmpty(daysUntilStr)) {
+            try {
+                daysUntil = Integer.parseInt(daysUntilStr);
+            } catch (NumberFormatException ignored) {}
+        }
+
+        AIFareTrendPredictor.FareAdvice advice = AIFareTrendPredictor.predictFareTrend(city, daysUntil);
+
+        String badge = advice.getRecommendation().equals("BUY NOW") ? "🚨 **RECOMMENDATION: BUY NOW**" : "⏳ **RECOMMENDATION: WAIT TO BOOK**";
+        String trendIcon = advice.getPriceTrendDirection().contains("RISING") ? "📈" : "📉";
+
+        String output = String.format(Locale.US,
+                "%s (%d%% AI Confidence)\n\n" +
+                        "📍 Destination: %s\n" +
+                        "⏱️ Days to Travel: %d days\n" +
+                        "💵 Current Est. Fare: $%.0f\n" +
+                        "🎯 Predicted Lowest: $%.0f\n" +
+                        "%s Price Trend: %s\n\n" +
+                        "💡 **AI Booking Insight:**\n%s\n\n" +
+                        "🗓️ **Optimal Booking Window:**\n%s",
+                badge, advice.getConfidenceScore(),
+                advice.getDestination(),
+                daysUntil,
+                advice.getCurrentAveragePrice(),
+                advice.getPredictedLowestPrice(),
+                trendIcon, advice.getPriceTrendDirection(),
+                advice.getRationale(),
+                advice.getBestTimeToBook());
+
+        tvFareTrendResult.setText(output);
     }
 }

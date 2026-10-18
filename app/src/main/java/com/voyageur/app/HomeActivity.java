@@ -60,6 +60,22 @@ public class HomeActivity extends AppCompatActivity {
         View cardHomeTripParis = findViewById(R.id.cardHomeTripParis);
         View cardHomeTripTokyo = findViewById(R.id.cardHomeTripTokyo);
 
+        View cardAiTravelIntelligence = findViewById(R.id.cardAiTravelIntelligence);
+        Button btnHomeAiChat = findViewById(R.id.btnHomeAiChat);
+        Button btnHomeMlScan = findViewById(R.id.btnHomeMlScan);
+
+        if (cardAiTravelIntelligence != null) {
+            cardAiTravelIntelligence.setOnClickListener(v -> openActivity(MLImageClassifierActivity.class));
+        }
+
+        if (btnHomeAiChat != null) {
+            btnHomeAiChat.setOnClickListener(v -> openActivity(ChatbotActivity.class));
+        }
+
+        if (btnHomeMlScan != null) {
+            btnHomeMlScan.setOnClickListener(v -> openActivity(MLImageClassifierActivity.class));
+        }
+
         if (btnNotifications != null) {
             btnNotifications.setOnClickListener(v ->
                     openActivity(AISmartAlertsActivity.class));

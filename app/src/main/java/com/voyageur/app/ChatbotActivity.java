@@ -13,6 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.speech.RecognizerIntent;
+import android.widget.ImageButton;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.app.ActivityCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +31,7 @@ public class ChatbotActivity extends AppCompatActivity {
     private RecyclerView rvChatMessages;
     private EditText etChatMessage;
     private Button btnSend;
+    private ImageButton btnVoiceMic;
     private ImageView btnBack;
     private ImageView btnClearChat;
     private TextView tvTypingStatus;
@@ -34,6 +45,8 @@ public class ChatbotActivity extends AppCompatActivity {
     private List<ChatMessage> messageList;
     private AIChatbotEngine chatbotEngine;
 
+    private ActivityResultLauncher<Intent> speechRecognitionLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +55,7 @@ public class ChatbotActivity extends AppCompatActivity {
         rvChatMessages = findViewById(R.id.rvChatMessages);
         etChatMessage = findViewById(R.id.etChatMessage);
         btnSend = findViewById(R.id.btnSend);
+        btnVoiceMic = findViewById(R.id.btnVoiceMic);
         btnBack = findViewById(R.id.btnBack);
         btnClearChat = findViewById(R.id.btnClearChat);
         tvTypingStatus = findViewById(R.id.tvTypingStatus);
@@ -53,6 +67,25 @@ public class ChatbotActivity extends AppCompatActivity {
 
         messageList = new ArrayList<>();
         chatbotEngine = new AIChatbotEngine();
+
+        // Speech recognition launcher
+        speechRecognitionLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        ArrayList<String> matches = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                        if (matches != null && !matches.isEmpty()) {
+                            String voiceSpokenText = matches.get(0);
+                            etChatMessage.setText(voiceSpokenText);
+                            sendMessage();
+                        }
+                    }
+                }
+        );
+
+        if (btnVoiceMic != null) {
+            btnVoiceMic.setOnClickListener(v -> startVoiceInput());
+        }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
@@ -86,6 +119,17 @@ public class ChatbotActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty(initQuery)) {
                 sendQuickQuery(initQuery);
             }
+        }
+    }
+
+    private void startVoiceInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to Voyageur AI (e.g., 'Plan a 3-day trip to Rome')");
+        try {
+            speechRecognitionLauncher.launch(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Speech recognition not supported on this device: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

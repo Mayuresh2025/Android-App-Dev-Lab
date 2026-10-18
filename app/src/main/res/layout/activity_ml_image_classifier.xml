@@ -264,7 +264,80 @@
                 android:background="#FFFFFF"
                 android:elevation="1dp"
                 android:padding="12dp"
-                android:text="Enter travel details and tap 'Calculate AI Cost Prediction'."
+                android:text="Enter destination and duration to run ML cost regression model."
+                android:textColor="#334155"
+                android:textSize="13sp" />
+
+            <!-- Section 4: MakeMyTrip / Hopper Style AI Flight & Fare Trend Predictor -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="4. AI Fare Trend &amp; 'When to Book' Predictor"
+                android:textColor="#173B57"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Predicts whether flight/hotel rates will surge or drop before your travel date."
+                android:textColor="#64748B"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etFareCity"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1.2"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="City (e.g. Paris, Goa, Tokyo)"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etDaysUntil"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="Days to trip (e.g. 10, 30)"
+                    android:inputType="number"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnPredictFareTrend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#008080"
+                android:text="✈️ Predict Price Trend (Buy vs Wait)"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvFareTrendResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="24dp"
+                android:background="#FFFFFF"
+                android:elevation="1dp"
+                android:padding="12dp"
+                android:text="Enter destination and days until departure to run AI price prediction."
                 android:textColor="#334155"
                 android:textSize="13sp" />
 
