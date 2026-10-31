@@ -1,9 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
-    <path android:fillColor="#0D1B2A" android:pathData="M0,0h108v108h-108z"/>
-    <path android:fillColor="#14B8A6"
-        android:pathData="M54,54 m-30,0 a30,30 0,1 1,60 0 a30,30 0,1 1,-60 0"
-        android:fillAlpha="0.25"/>
-    <path android:fillColor="#FFFFFF"
-        android:pathData="M74,58v-4l-16,-10V32c0,-1.66 -1.34,-3 -3,-3s-3,1.34 -3,3v12l-16,10v4l16,-5v13l-5,3v3l8,-1.5 8,1.5v-3l-5,-3V53z"/>
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Deep Navy Background Circle -->
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M54,54m-54,0a54,54 0,1,1 108,0a54,54 0,1,1 -108,0" />
+    <!-- Soft Teal Radial Accents -->
+    <path
+        android:fillColor="#00A896"
+        android:fillAlpha="0.12"
+        android:pathData="M54,54m-44,0a44,44 0,1,1 88,0a44,44 0,1,1 -88,0" />
+    <path
+        android:fillColor="#00A896"
+        android:fillAlpha="0.22"
+        android:pathData="M54,54m-32,0a32,32 0,1,1 64,0a32,32 0,1,1 -64,0" />
+    <!-- Glowing Teal Circle Backdrop -->
+    <path
+        android:fillColor="#00A896"
+        android:fillAlpha="0.35"
+        android:pathData="M54,54m-26,0a26,26 0,1,1 52,0a26,26 0,1,1 -52,0" />
+    <!-- Thin Decorative Teal Ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#00A896"
+        android:strokeWidth="1.5"
+        android:pathData="M54,54m-28,0a28,28 0,1,1 56,0a28,28 0,1,1 -56,0" />
+    <!-- Airplane Emblem -->
+    <group
+        android:scaleX="1.8"
+        android:scaleY="1.8"
+        android:translateX="32.4"
+        android:translateY="32.4">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M21,16v-2l-8,-5V3.5C13,2.67 12.33,2 11.5,2S10,2.67 10,3.5V9l-8,5v2l8,-2.5V19l-2.5,1.5V22L11.5,21l4,1v-1.5L13,19v-5.5L21,16z"/>
+    </group>
 </vector>

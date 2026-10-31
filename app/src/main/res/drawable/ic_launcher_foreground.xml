@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Glowing Teal Circle Backdrop for Emblem -->
+    <path
+        android:fillColor="#00A896"
+        android:fillAlpha="0.35"
+        android:pathData="M54,54m-26,0a26,26 0,1,1 52,0a26,26 0,1,1 -52,0" />
+
+    <!-- Thin Decorative Teal Ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#00A896"
+        android:strokeWidth="1.5"
+        android:pathData="M54,54m-28,0a28,28 0,1,1 56,0a28,28 0,1,1 -56,0" />
+
+    <!-- Airplane Emblem Centered at 54,54 -->
+    <group
+        android:scaleX="1.8"
+        android:scaleY="1.8"
+        android:translateX="32.4"
+        android:translateY="32.4">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M21,16v-2l-8,-5V3.5C13,2.67 12.33,2 11.5,2S10,2.67 10,3.5V9l-8,5v2l8,-2.5V19l-2.5,1.5V22L11.5,21l4,1v-1.5L13,19v-5.5L21,16z"/>
+    </group>
+</vector>
