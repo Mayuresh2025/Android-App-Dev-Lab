@@ -54,7 +54,7 @@
         <activity android:name=".CameraActivity" android:exported="false" />
         <activity android:name=".MediaActivity" android:exported="false" />
         <activity android:name=".CampusNavigationActivity" android:exported="false" />
-        <activity android:name=".ChatbotActivity" android:exported="false" />
+        <activity android:name=".ChatbotActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".MLImageClassifierActivity" android:exported="false" />
         <activity android:name=".AISmartAlertsActivity" android:exported="false" />
 

@@ -243,6 +243,7 @@ public class AIChatbotEngine {
     }
 
     private String synthesizeGeneral(String query) {
+        String dest = extractDestination(query);
         if (query.contains("hello") || query.contains("hi") || query.contains("hey")) {
             return "👋 Hello! I am **Voyageur AI**, your real-time intelligent travel companion.\n\n" +
                     "I can instantly assist you with:\n" +
@@ -254,11 +255,34 @@ public class AIChatbotEngine {
                     "Where would you like to travel next?";
         } else if (query.contains("who are you") || query.contains("what can you do")) {
             return "🤖 I am **Voyageur AI Assistant**! Powered by machine learning cost models, destination heuristics, and real-time database sync. Ask me any travel question!";
+        } else if (query.contains("flight") || query.contains("airline") || query.contains("plane") || query.contains("ticket")) {
+            return "✈️ **AI Flight & Booking Intelligence for " + capitalize(dest) + "**\n\n" +
+                    "• **Best Booking Window:** Secure international flights 6 to 8 weeks in advance for optimal pricing.\n" +
+                    "• **Price Alerts:** Use Voyageur's Fare Trend Predictor to track whether fares are expected to rise or drop.\n" +
+                    "• **Luggage Rules:** Always verify carry-on weight limits (usually 7-10kg) before heading to the airport.";
+        } else if (query.contains("hotel") || query.contains("stay") || query.contains("accommodation") || query.contains("hostel") || query.contains("room")) {
+            return "🏨 **AI Accommodation Guide for " + capitalize(dest) + "**\n\n" +
+                    "• **Location Strategy:** Stay within walking distance of central transit stations or historic downtown districts.\n" +
+                    "• **Amenities to Check:** Free high-speed Wi-Fi, 24/7 front desk check-in, and inclusive breakfast.\n" +
+                    "• **Booking Tip:** Book directly with properties or trusted platforms offering free cancellation up to 48 hours prior.";
+        } else if (query.contains("train") || query.contains("metro") || query.contains("subway") || query.contains("bus") || query.contains("transport") || query.contains("taxi")) {
+            return "🚆 **AI Transit & Navigation Guide for " + capitalize(dest) + "**\n\n" +
+                    "• **Public Transit:** Purchase multi-day transit passes or contactless transit cards to save on daily fares.\n" +
+                    "• **Navigation:** Use Voyageur's built-in Campus & City Navigation for precise waypoint routing.\n" +
+                    "• **Ride-Sharing:** Verify official licensed taxi stands at airports to avoid tourist markup traps.";
+        } else if (query.contains("money") || query.contains("currency") || query.contains("cash") || query.contains("card") || query.contains("atm")) {
+            return "💳 **AI Currency & Financial Guide for " + capitalize(dest) + "**\n\n" +
+                    "• **Payment Methods:** Carry a mix of contactless credit cards (with zero foreign transaction fees) and local cash for small vendors.\n" +
+                    "• **ATM Safety:** Use ATMs located inside bank lobbies rather than street-side machines.\n" +
+                    "• **Tipping:** Research local tipping customs before dining or taking rides.";
         } else {
-            return "💡 **Voyageur AI Real-Time Recommendation**\n\n" +
-                    "Regarding **'" + query + "'**:\n" +
-                    "I recommend checking local seasonal climate, booking accommodations 3-4 weeks ahead, and keeping a flexible day for spontaneous exploration.\n\n" +
-                    "Would you like an itinerary, a budget breakdown, or a packing checklist for your destination?";
+            return String.format(Locale.ROOT, 
+                    "💡 **Voyageur AI Dynamic Synthesis**\n\n" +
+                    "Regarding your query about **\"%s\"** for **%s**:\n\n" +
+                    "• **AI Recommendation:** Plan your daily schedule with 2 major activities in the morning and a relaxed evening stroll.\n" +
+                    "• **Local Insight:** Stay connected using local eSIM data and keep emergency contacts saved offline.\n\n" +
+                    "Would you like me to generate a full **itinerary**, compute a **budget breakdown**, or suggest a **packing list**?",
+                    query, capitalize(dest));
         }
     }
 
